@@ -23,6 +23,7 @@ jobs:
           echo "PR_DESCRIPTION=${{ github.event.pull_request.body }}" >> $GITHUB_ENV
 
       - name: Run script
-        run: ./version.sh
+        run: |
+        ./version.sh
         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
         git push --follow-tags
