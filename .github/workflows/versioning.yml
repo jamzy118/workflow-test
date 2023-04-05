@@ -1,0 +1,25 @@
+name: Update Changelog and Create Tag
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  run_script:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'master'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set environment variables
+        run: |
+          echo "SOURCE_BRANCH=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
+          echo "PR_DESCRIPTION=${{ github.event.pull_request.body }}" >> $GITHUB_ENV
+
+      - name: Run script
+        run: ./update_changelog_and_create_tag.sh
