@@ -34,4 +34,3 @@ git config --local user.name "GitHub Action"
 git add CHANGELOG.md
 git commit -m "chore: update CHANGELOG for version $new_tag"
 git tag "$new_tag"
-git push --follow-tags
