@@ -22,4 +22,4 @@ jobs:
           echo "PR_DESCRIPTION=${{ github.event.pull_request.body }}" >> $GITHUB_ENV
 
       - name: Run script
-        run: ./update_changelog_and_create_tag.sh
+        run: ./version.sh
