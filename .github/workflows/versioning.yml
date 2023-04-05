@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ACTIONS_PAT }}
 
       - name: Set environment variables
         run: |
@@ -24,8 +24,8 @@ jobs:
 
       - name: Run script
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTIONS_PAT: ${{ secrets.ACTIONS_PAT }}
         run: |
           ./version.sh
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+          git remote set-url origin https://x-access-token:${ACTIONS_PAT}@github.com/${{ github.repository }}
           git push --follow-tags
